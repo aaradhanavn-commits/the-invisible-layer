@@ -1,87 +1,111 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Invisible Layer — a guide to the connections beneath a company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080b11;--panel:#0e131d;--panel2:#121826;--line:#232c3d;--text:#e8edf7;--muted:#9aa6ba;--accent:#7c5cff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-header{position:sticky;top:0;background:rgba(8,11,17,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 22px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;z-index:40}
-h1{margin:0;font-size:17px}.by{color:var(--muted);font-size:12px}
-nav{display:flex;gap:8px;flex-wrap:wrap}
-.tab{background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 13px;border-radius:9px;font-size:13px;cursor:pointer}
-.tab.active{background:#1b1733;border-color:var(--accent);color:#fff}
+:root{
+ --bg:#faf6ee; --surface:#ffffff; --surface2:#f4eee1;
+ --ink:#2b1a22; --muted:#8a7a6f; --line:#e7ddc9;
+ --accent:#d95f4f; --accent-soft:#fbeae6; --amber:#e9a94b; --plum:#3b1d2a;
+ --display:"Bagel Fat One",system-ui,sans-serif; --body:"DM Sans",system-ui,sans-serif;
+ --radius:14px; --border:1.5px solid var(--line);
+}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15.5px/1.65 var(--body)}
+header{position:sticky;top:0;background:rgba(250,246,238,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:13px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;z-index:40}
+h1{margin:0;font:400 18px/1.1 var(--display);color:var(--ink)}
+.by{color:var(--muted);font-size:12px}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+.tab{background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:99px;font:600 13px var(--body);cursor:pointer;transition:all .15s}
+.tab:hover{color:var(--ink);border-color:#d8cbb2}
+.tab.active{background:var(--ink);border-color:var(--ink);color:#fff}
 .page{display:none}.page.active{display:block}
-.guide{max-width:820px;margin:0 auto;padding:70px 26px 110px}
-.kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8f7dff;margin-bottom:14px}
-h2{font-size:clamp(28px,5vw,40px);line-height:1.12;letter-spacing:-.03em;margin:0 0 18px}
-h3{font-size:19px;margin:36px 0 10px}
-p{color:#c8d1e0}.lede{font-size:20px;color:#e2e9f6}
-.quote{border-left:4px solid var(--accent);background:#141021;padding:20px 24px;border-radius:0 14px 14px 0;margin:28px 0;font-size:19px;color:#e6e1fb}
-.quote small{display:block;margin-top:8px;color:var(--muted);font-size:12px}
-.story{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;margin:26px 0}
+.guide{max-width:760px;margin:0 auto;padding:64px 26px 110px}
+.kicker{font:700 11px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+h2{font:400 clamp(30px,5vw,42px)/1.1 var(--display);letter-spacing:-.01em;margin:0 0 18px;color:var(--ink)}
+h3{font:600 18px/1.3 var(--body);margin:38px 0 10px;color:var(--ink)}
+p{color:#54463e}.lede{font-size:19px;color:var(--ink);font-weight:500}
+.quote{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);padding:20px 24px;border-radius:var(--radius);margin:28px 0;font-size:18px;color:var(--ink);font-weight:500}
+.quote small{display:block;margin-top:10px;color:var(--muted);font:500 12px var(--body)}
+.story{background:var(--surface);border:var(--border);border-radius:var(--radius);padding:26px;margin:26px 0}
 .story p{margin:0 0 13px}.story p:last-child{margin:0}
-.label{display:inline-block;font-size:11px;padding:4px 10px;border-radius:999px;border:1px solid #3b2f6b;color:#c9bfff;margin-bottom:12px}
-.pages{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:26px 0}
-.pc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
-.pc h4{margin:0 0 6px;font-size:14.5px}.pc p{margin:0;font-size:13px;color:#aab5c8}
-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
-th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);color:#c8d1e0;vertical-align:top}
-th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
-td strong{color:#fff}
-.next{margin-top:40px;display:flex;gap:12px;flex-wrap:wrap}
-.btn{background:#1b1733;border:1px solid var(--accent);color:#fff;padding:12px 18px;border-radius:10px;font-weight:600;cursor:pointer}
+.label{display:inline-block;font:600 11px var(--body);padding:4px 12px;border-radius:99px;border:1px solid var(--line);color:var(--muted);background:var(--surface2);margin-bottom:14px}
+.pages{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:26px 0}
+.pc{background:var(--surface);border:var(--border);border-radius:var(--radius);padding:18px}
+.pc h4{font:600 14.5px var(--body);margin:0 0 6px;color:var(--ink)}.pc p{margin:0;font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;background:var(--surface);border:var(--border);border-radius:var(--radius);overflow:hidden}
+th,td{text-align:left;padding:12px 15px;border-bottom:1px solid var(--line);color:#54463e;vertical-align:top}
+th{background:var(--surface2);color:var(--muted);font:600 11px var(--body);text-transform:uppercase;letter-spacing:.08em}
+td strong{color:var(--ink)}
+.next{margin-top:42px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{background:var(--ink);border:1px solid var(--ink);color:#fff;padding:11px 18px;border-radius:99px;font:600 13.5px var(--body);cursor:pointer;transition:all .15s}
+.btn:hover{background:var(--accent);border-color:var(--accent)}
 .btn.ghost{background:transparent;border-color:var(--line);color:var(--muted)}
-.mapwrap{position:relative;height:calc(100vh - 120px);overflow:hidden;background:radial-gradient(circle at 50% 45%,#131b2c 0%,#0a0f1a 55%,#070a10 100%)}
+.btn.ghost:hover{color:var(--ink);border-color:#d8cbb2;background:var(--surface)}
+.mapwrap{position:relative;height:calc(100vh - 120px);overflow:hidden;background:radial-gradient(circle at 50% 42%,#fffdf8 0%,#f6efe0 55%,#efe6d2 100%)}
 svg{width:100%;height:100%;display:block;cursor:grab}
 svg.panning{cursor:grabbing}
-.zoomcontrols{position:absolute;bottom:18px;right:18px;display:flex;flex-direction:column;gap:8px;z-index:10}
-.zbtn{width:42px;height:42px;border-radius:12px;background:rgba(14,19,29,.92);border:1px solid #2a344a;color:#dbe4f2;font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.zbtn:hover{border-color:var(--accent);color:#fff}
-.maphint{position:absolute;bottom:18px;left:18px;color:var(--muted);font-size:11.5px;background:rgba(14,19,29,.85);border:1px solid var(--line);padding:6px 11px;border-radius:999px;z-index:10}
+.zoomcontrols{position:absolute;bottom:18px;right:18px;display:flex;flex-direction:column;gap:7px;z-index:10}
+.zbtn{width:40px;height:40px;border-radius:11px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font:600 18px var(--body);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(43,26,34,.08);transition:all .15s}
+.zbtn:hover{border-color:var(--accent);color:var(--accent)}
+.maphint{position:absolute;bottom:18px;left:18px;color:var(--muted);font:500 11.5px var(--body);background:rgba(255,255,255,.9);border:1px solid var(--line);padding:6px 12px;border-radius:99px;z-index:10}
 .ring{fill:none;stroke-width:1.5}
-.ring-label{fill:#7e8ba1;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.center circle{fill:#151d2e;stroke:#7c5cff;stroke-width:2}
-.center text{fill:#e8edf7;font-size:15px;font-weight:700}
-.center .sub{fill:#9aa6ba;font-size:11px;font-weight:500}
+.ring-label{fill:var(--muted);font:600 11.5px var(--body);letter-spacing:.13em;text-transform:uppercase}
+.center circle{fill:var(--ink);stroke:var(--ink)}
+.center text{fill:#fff;font:600 14px var(--body)}
+.center .sub{fill:#e9c8b8;font:500 10.5px var(--body)}
 .node{cursor:pointer}
-.node rect.card{fill:#111a29;stroke:#33405a;stroke-width:1.5;transition:stroke .15s}
-.node:hover rect.card{stroke:#7c5cff}
-.node.selected rect.card{stroke:#fff;stroke-width:2.5}
-.node.dim{opacity:.15}
-.node text{fill:#e8edf7;font-size:12.5px;font-weight:600;pointer-events:none}
-.node .id{fill:#8b98ad;font-size:9.5px;font-weight:500;pointer-events:none}
-.edge{stroke:#33405a;stroke-width:1.3;fill:none;opacity:.35;pointer-events:none}
-.edge.active{stroke:#7c5cff;stroke-width:2.2;opacity:1}
-.sidepanel{position:fixed;right:0;top:0;bottom:0;width:380px;max-width:92vw;background:var(--panel);border-left:1px solid var(--line);overflow-y:auto;padding:22px;display:none;z-index:50;box-shadow:-30px 0 60px rgba(0,0,0,.45)}
+.node rect.card{fill:var(--surface);stroke:#ddd2bc;stroke-width:1.5;transition:all .15s}
+.node:hover rect.card{stroke:var(--accent)}
+.node.selected rect.card{stroke:var(--ink);stroke-width:2.5}
+.node.dim{opacity:.16}
+.node text{fill:var(--ink);font:600 12.5px var(--body);pointer-events:none}
+.node .id{fill:var(--muted);font:500 9.5px var(--body);pointer-events:none}
+.edge{stroke:#c9bda4;stroke-width:1.3;fill:none;opacity:.5;pointer-events:none}
+.edge.active{stroke:var(--accent);stroke-width:2.2;opacity:1}
+.sidepanel{position:fixed;right:0;top:0;bottom:0;width:380px;max-width:94vw;background:var(--surface);border-left:1px solid var(--line);overflow-y:auto;padding:22px;display:none;z-index:50;box-shadow:-20px 0 50px rgba(43,26,34,.1)}
 .sidepanel.open{display:block}
 .panelhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
-.closebtn{background:#161d2c;border:1px solid #2a344a;color:#dbe4f2;border-radius:9px;padding:6px 11px;cursor:pointer;font-size:13px}
-.closebtn:hover{border-color:var(--accent)}
-.pill{display:inline-block;font-size:11px;padding:3px 9px;border-radius:999px;color:#080b12;font-weight:700}
+.closebtn{background:var(--surface2);border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:6px 13px;cursor:pointer;font:600 12.5px var(--body)}
+.closebtn:hover{color:var(--ink);border-color:#d8cbb2}
+.pill{display:inline-block;font:600 11px var(--body);padding:3px 10px;border-radius:99px;color:#fff}
 .mono{font-family:ui-monospace,Menlo,monospace;color:var(--muted);font-size:12px}
-h3.sh{margin:10px 0 6px;font-size:19px}.summary{color:#c8d1e0;margin:8px 0 16px}
-.box{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:14px;margin-bottom:12px}
-.box h4{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.box ul{margin:0;padding-left:18px;color:#c8d1e0;font-size:13px}.box li{margin:5px 0}
-.link{display:inline-block;background:#161d2c;border:1px solid var(--line);color:#dbe4f2;padding:5px 9px;border-radius:8px;margin:3px 5px 0 0;font-size:12px;cursor:pointer}
-.link:hover{border-color:var(--accent)}
-.callout{border-left:3px solid var(--accent);background:#151129;padding:12px 14px;border-radius:0 10px 10px 0;color:#d9d3f7;margin-top:14px}
-.preview{max-width:1000px;margin:0 auto;padding:50px 26px 100px}
-.mock{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:24px 0}
-.mockbar{padding:14px 18px;border-bottom:1px solid var(--line);font-weight:600}
+h3.sh{font:600 18px/1.25 var(--body);margin:10px 0 6px;color:var(--ink)}.summary{color:#54463e;margin:8px 0 16px}
+.box{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:11px}
+.box h4{margin:0 0 8px;font:700 10.5px var(--body);text-transform:uppercase;letter-spacing:.09em;color:var(--accent)}
+.box ul{margin:0;padding-left:18px;color:#54463e;font-size:13px}.box li{margin:5px 0}
+.link{display:inline-block;background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:5px 10px;border-radius:99px;margin:3px 5px 0 0;font:600 12px var(--body);cursor:pointer;transition:all .12s}
+.link:hover{border-color:var(--accent);color:var(--accent)}
+.callout{background:var(--accent-soft);border:1px solid #f0cfc7;border-radius:12px;padding:12px 16px;margin-top:14px;color:#7a3a30}
+.callout strong{color:var(--accent)}
+.preview{max-width:960px;margin:0 auto;padding:50px 26px 100px}
+.mock{background:var(--surface);border:var(--border);border-radius:16px;overflow:hidden;margin:24px 0;box-shadow:0 4px 20px rgba(43,26,34,.06)}
+.mockbar{padding:14px 18px;border-bottom:1px solid var(--line);font:600 14px var(--body);color:var(--ink);background:var(--surface2)}
 .mockbody{padding:18px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:850px){.row{grid-template-columns:1fr}}
-.item{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px}
-.item h4{margin:0 0 5px;font-size:14.5px}.item p{margin:0;color:#aab5c8;font-size:13px}
-.badge{display:inline-block;font-size:10.5px;padding:3px 8px;border-radius:999px;margin:6px 5px 0 0;border:1px solid #3b465c;color:#c8d1e0}
-.badge.money{border-color:#12a594;color:#4fd1c5}.badge.people{border-color:#7c5cff;color:#c9bfff}.badge.risk{border-color:#ff7a59;color:#ff9f85}
-.agent{background:#101a2b;border:1px solid #24406b;border-radius:14px;padding:16px;margin-top:14px}
-.agent h4{margin:0 0 8px;font-size:14px}.agent .input{background:#0b101a;border:1px solid #2a344a;border-radius:10px;padding:11px 13px;color:#dbe4f7;font-size:13.5px}
-.proposal{margin-top:12px;background:#121826;border:1px solid #2a344a;border-radius:10px;padding:13px}
-.proposal div{margin:4px 0;font-size:13px;color:#c8d1e0}.proposal strong{color:#fff}
-.buttons{display:flex;gap:8px;margin-top:12px}.buttons button{background:#1b1733;border:1px solid var(--accent);color:#fff;padding:8px 13px;border-radius:9px;font-size:12.5px;cursor:pointer}
-.buttons button.ghost{background:#161d2c;border-color:#2a344a;color:#dbe4f2}
-.plan{max-width:820px;margin:0 auto;padding:60px 26px 110px}
-.phase{border-left:3px solid var(--accent);background:#151129;border-radius:0 12px 12px 0;padding:16px 18px;margin:14px 0}.phase strong{display:block;margin-bottom:5px}
-.no{background:#1b1114;border:1px solid #5b3232;border-radius:12px;padding:16px;margin-top:18px}.no strong{color:#ff9f85}
-ul{color:#c8d1e0;padding-left:22px}li{margin:8px 0}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px}
+.item h4{margin:0 0 5px;font:600 14px var(--body);color:var(--ink)}.item p{margin:0;color:var(--muted);font-size:13px}
+.badge{display:inline-block;font:600 10.5px var(--body);padding:3px 9px;border-radius:99px;margin:6px 5px 0 0;border:1px solid var(--line);background:var(--surface2);color:var(--muted)}
+.badge.money{border-color:#e5c88a;background:#fdf3dd;color:#8a6420}
+.badge.people{border-color:#d9c5e0;background:#f5edf8;color:#6b4a7a}
+.badge.risk{border-color:#f0cfc7;background:var(--accent-soft);color:var(--accent)}
+.agent{background:var(--surface2);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px}
+.agent h4{margin:0 0 8px;font:600 14px var(--body);color:var(--ink)}.agent .input{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 13px;color:var(--ink);font:500 13.5px var(--body)}
+.proposal{margin-top:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:13px}
+.proposal div{margin:4px 0;font-size:13px;color:#54463e}.proposal strong{color:var(--ink)}
+.buttons{display:flex;gap:8px;margin-top:12px}.buttons button{background:var(--ink);border:1px solid var(--ink);color:#fff;padding:8px 15px;border-radius:99px;font:600 12.5px var(--body);cursor:pointer}
+.buttons button:hover{background:var(--accent);border-color:var(--accent)}
+.buttons button.ghost{background:transparent;border-color:var(--line);color:var(--muted)}
+.plan{max-width:760px;margin:0 auto;padding:60px 26px 110px}
+.phase{background:var(--surface);border:var(--border);border-radius:var(--radius);padding:16px 18px;margin:12px 0}
+.phase strong{display:block;font:600 15px var(--body);margin-bottom:5px;color:var(--ink)}
+.phase p{margin:0}
+.no{background:var(--surface);border:1px solid #f0cfc7;border-radius:var(--radius);padding:16px;margin-top:18px}
+.no strong{color:var(--accent)}
+ul{color:#54463e;padding-left:22px}li{margin:8px 0}
+footer{border-top:1px solid var(--line);background:var(--surface2);padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+footer .fin{color:var(--muted);font:500 13px var(--body)}
+footer a{text-decoration:none}
+footer .tab{background:var(--accent);border-color:var(--accent);color:#fff}
+footer .tab:hover{color:#fff;border-color:var(--accent);opacity:.9}
 </style></head><body>
 <header><div><h1>The Invisible Layer</h1><div class="by">A guide to the connections beneath a company · by Aaradhana Venkatesan</div></div>
 <nav><div class="tab active" data-page="guide">The idea</div><div class="tab" data-page="map">The full map</div><div class="tab" data-page="preview">The Ops OS</div><div class="tab" data-page="plan">Build plan</div></nav></header>
@@ -134,7 +158,7 @@ ul{color:#c8d1e0;padding-left:22px}li{margin:8px 0}
 </div></section>
 
 <section class="page" id="map">
-<div style="padding:12px 18px;border-bottom:1px solid var(--line);background:#0a0f18;color:var(--muted);font-size:12.5px">
+<div style="padding:12px 18px;border-bottom:1px solid var(--line);background:var(--surface2);color:var(--muted);font:500 12.5px var(--body)">
 The company sits at the centre. Governance holds decisions and constraints. Build and Supply turn intent into a physical product. Software & AI shape the experience. Evidence governs what can be claimed. Commercial & Service face the customer — and feed back into the centre.
 </div>
 <div class="mapwrap">
@@ -142,7 +166,7 @@ The company sits at the centre. Governance holds decisions and constraints. Buil
 <div class="zoomcontrols">
 <button class="zbtn" id="zoomIn" title="Zoom in">+</button>
 <button class="zbtn" id="zoomOut" title="Zoom out">−</button>
-<button class="zbtn" id="zoomReset" title="Reset view" style="font-size:13px">Reset</button>
+<button class="zbtn" id="zoomReset" title="Reset view" style="font-size:12px">Reset</button>
 </div>
 <div class="maphint">Scroll to zoom · drag to pan · click a node</div>
 </div>
@@ -207,11 +231,11 @@ The company sits at the centre. Governance holds decisions and constraints. Buil
 <div class="kicker">Build plan</div>
 <h2>Start with a shared ground truth</h2>
 <p>I would not build a giant platform first. I would build the smallest version of the Ops OS that makes the company’s reality visible and useful every day.</p>
-<div class="phase"><strong>1 · Capture</strong>Someone records an update in plain language: money spent, person hired, blocker raised, decision made, or promise changed.</div>
-<div class="phase"><strong>2 · Understand</strong>The system identifies the context: which node it belongs to, how much money is involved, who is affected, and what decision it relates to.</div>
-<div class="phase"><strong>3 · Position</strong>The update is connected to the relevant parts of the map: finance, people, firmware, supply, claims, evidence, or customers.</div>
-<div class="phase"><strong>4 · Update ground truth</strong>After confirmation, the company’s shared record updates: open items, blockers, decisions, commitments and affected areas.</div>
-<div class="phase"><strong>5 · Make it visible</strong>The daily home shows what changed, what is blocked, what needs a decision, and what promises or timelines are at risk.</div>
+<div class="phase"><strong>1 · Capture</strong><p>Someone records an update in plain language: money spent, person hired, blocker raised, decision made, or promise changed.</p></div>
+<div class="phase"><strong>2 · Understand</strong><p>The system identifies the context: which node it belongs to, how much money is involved, who is affected, and what decision it relates to.</p></div>
+<div class="phase"><strong>3 · Position</strong><p>The update is connected to the relevant parts of the map: finance, people, firmware, supply, claims, evidence, or customers.</p></div>
+<div class="phase"><strong>4 · Update ground truth</strong><p>After confirmation, the company’s shared record updates: open items, blockers, decisions, commitments and affected areas.</p></div>
+<div class="phase"><strong>5 · Make it visible</strong><p>The daily home shows what changed, what is blocked, what needs a decision, and what promises or timelines are at risk.</p></div>
 <h3>What it achieves</h3>
 <ul><li>One place to see money committed, people added, blockers and decisions.</li><li>Operational updates become structured ground truth instead of chat messages.</li><li>The people carrying the company’s memory stop being the single point of failure.</li><li>Blockers and customer promises become visible before they become expensive.</li></ul>
 <h3>What I would not build first</h3>
@@ -227,15 +251,20 @@ The company sits at the centre. Governance holds decisions and constraints. Buil
 <li><strong>Automate only what is repeated.</strong> Once a pattern is clear, let the system capture or flag it.</li>
 </ul>
 <div class="quote">Start with visibility. Earn trust through usefulness. Then automate.</div>
-<div class="callout" style="margin-top:24px"><strong>Next step:</strong> this is a starting point, not a finished system. The next version would test whether a small team would actually use a daily ground-truth layer — and what they would want it to capture first.</div>
+<div class="callout"><strong>Next step:</strong> this is a starting point, not a finished system. The next version would test whether a small team would actually use a daily ground-truth layer — and what they would want it to capture first.</div>
 <div class="next"><button class="btn ghost" onclick="go('map')">Back to the map</button><button class="btn ghost" onclick="go('preview')">Back to the Ops OS</button></div>
 </div></section>
 
+<footer>
+<div class="fin">The Invisible Layer · a piece of thinking on operations & systems by Aaradhana Venkatesan</div>
+<a href="https://aaradhana.netlify.app/"><div class="tab">← Back to portfolio</div></a>
+</footer>
+
 <script>
-const DATA={"center": {"x": 1020, "y": 480}, "rings": {"1": 170, "2": 330, "3": 470, "4": 600}, "nodes": [{"id": "O1", "label": "Finance & runway", "group": "Governance", "ring": 1, "angle": 270, "summary": "Cash, spend approvals and runway.", "up": ["S2", "S1", "O2"], "down": ["O3"], "decision": ["Approve at-risk spend"], "money": ["Rush fees, reprints, inventory cash"], "failure": ["Costs appear after commitments are made"]}, {"id": "O2", "label": "People & capability", "group": "Governance", "ring": 1, "angle": 342, "summary": "Hiring, contractors and capacity.", "up": ["O3"], "down": ["P3", "D1", "D4", "S6"], "decision": ["Hire vs contract"], "money": ["Salaries and contractor spend"], "failure": ["One person becomes the bottleneck"]}, {"id": "O3", "label": "Roadmap & launch date", "group": "Governance", "ring": 1, "angle": 54, "summary": "What ships, when, and in what order.", "up": ["E1", "E2", "C1", "S1"], "down": ["P1", "P3", "P4", "D1", "D4", "D5", "C1", "C2", "C3"], "decision": ["Move launch date", "Cut scope"], "money": ["Delay cost and rush premiums"], "failure": ["A date change invalidates evidence, claims and supply plans"]}, {"id": "O4", "label": "Decision log", "group": "Governance", "ring": 1, "angle": 126, "summary": "Why a decision was made and what it touched.", "up": [], "down": ["O1", "O2", "O3", "E1", "E2", "E3", "E4"], "decision": ["Record decision and owner"], "money": ["Low cost, high avoidance value"], "failure": ["Decisions live in people\u2019s heads"]}, {"id": "O5", "label": "Systems & integrations", "group": "Governance", "ring": 1, "angle": 198, "summary": "Tools, data connections and automations.", "up": ["O3", "E4"], "down": ["C5", "S6"], "decision": ["Build vs buy"], "money": ["Tooling and maintenance"], "failure": ["Integrations break and the map becomes stale"]}, {"id": "P1", "label": "Casing & industrial design", "group": "Build", "ring": 2, "angle": 0, "summary": "Form factor, materials and enclosure.", "up": ["O3", "P3"], "down": ["P5", "P2"], "decision": ["Freeze form factor"], "money": ["Tooling and prototypes"], "failure": ["Late casing change forces rework"]}, {"id": "P2", "label": "Packaging & claims copy", "group": "Build", "ring": 2, "angle": 40, "summary": "Box, inserts, instructions and claims.", "up": ["E2", "P1"], "down": ["S4", "C1"], "decision": ["Freeze packaging claims"], "money": ["Print and reprint cost"], "failure": ["Claims change after printing"]}, {"id": "P3", "label": "Electronics & sensors", "group": "Build", "ring": 2, "angle": 80, "summary": "PCB, sensors, battery and power.", "up": ["P1", "O3", "S1"], "down": ["P4", "D3", "E1", "S4"], "decision": ["Choose sensors", "Revise PCB"], "money": ["BOM, respins, test fixtures"], "failure": ["Hardware change invalidates firmware and evidence"]}, {"id": "P4", "label": "Firmware", "group": "Build", "ring": 2, "angle": 120, "summary": "Sampling, power, OTA and device control.", "up": ["P3", "D3"], "down": ["D3", "D4", "E1", "E2", "S4"], "decision": ["Change sampling rate", "Release OTA"], "money": ["Validation and certification"], "failure": ["One setting changes features, models, claims and studies"]}, {"id": "P5", "label": "Manufacturing & QC", "group": "Supply", "ring": 2, "angle": 160, "summary": "Build, test, yield and release.", "up": ["P1", "P3", "P4", "S4"], "down": ["S3", "C3"], "decision": ["Batch size", "QC plan"], "money": ["Unit cost, yield loss, rework"], "failure": ["Defects create returns and support load"]}, {"id": "S1", "label": "Vendors & lead times", "group": "Supply", "ring": 2, "angle": 200, "summary": "Components, suppliers and supply risk.", "up": ["P3", "O3"], "down": ["S2", "S4"], "decision": ["Choose vendor", "Commit lead time"], "money": ["Component and expedite cost"], "failure": ["Long-lead part becomes critical path"]}, {"id": "S2", "label": "Procurement & BOM", "group": "Supply", "ring": 2, "angle": 240, "summary": "What to buy, when, and at what risk.", "up": ["P3", "S1", "O1"], "down": ["S3", "S4", "O1"], "decision": ["Buy at risk", "Approve PO"], "money": ["Cash committed, write-off risk"], "failure": ["Buying before design freeze creates obsolete stock"]}, {"id": "S3", "label": "Inventory & allocation", "group": "Supply", "ring": 2, "angle": 280, "summary": "Finished units, reservations and allocation.", "up": ["S4", "C3"], "down": ["S5", "C3"], "decision": ["Set safety stock", "Allocate units"], "money": ["Working capital and storage"], "failure": ["Stock reserved for wrong configuration"]}, {"id": "S4", "label": "Production & fulfilment", "group": "Supply", "ring": 2, "angle": 320, "summary": "Build, pack and prepare delivery.", "up": ["P5", "S2", "S3"], "down": ["S3", "S5", "C3"], "decision": ["Production slot", "QC release"], "money": ["Labour, freight, rework"], "failure": ["Production slip moves delivery promise"]}, {"id": "D1", "label": "App & web", "group": "Software & AI", "ring": 3, "angle": 0, "summary": "What the customer sees and does.", "up": ["D2", "D3", "D4", "D5", "O3"], "down": ["D5", "S6", "C1", "C5"], "decision": ["Release scope", "Feature flags"], "money": ["Engineering and design"], "failure": ["App copy makes unsupported claims"]}, {"id": "D2", "label": "Backend & data pipeline", "group": "Software & AI", "ring": 3, "angle": 40, "summary": "Data ingestion, storage and APIs.", "up": ["E4", "P4", "D3"], "down": ["D1", "D3", "D4", "D5", "C5"], "decision": ["Schema", "Retention", "Pipeline release"], "money": ["Hosting and compute"], "failure": ["Pipeline change alters model inputs and studies"]}, {"id": "D3", "label": "Signal processing", "group": "Software & AI", "ring": 3, "angle": 80, "summary": "Raw signal to usable health features.", "up": ["P3", "P4", "D2"], "down": ["D4", "D5", "E1", "E2"], "decision": ["Define features", "Set thresholds"], "money": ["Compute and validation"], "failure": ["Changed features invalidate models and evidence"]}, {"id": "D4", "label": "LLM & intelligence", "group": "Software & AI", "ring": 3, "angle": 120, "summary": "Prompts, guardrails, evaluations and routing.", "up": ["D2", "D3", "E3", "E4"], "down": ["D1", "D5", "E2", "E3"], "decision": ["Prompt version", "Guardrails", "Model version"], "money": ["Inference, evaluation, safety"], "failure": ["LLM change alters advice and claims invisibly"]}, {"id": "D5", "label": "Behaviour-change engine", "group": "Software & AI", "ring": 3, "angle": 160, "summary": "Interventions, personalisation and outcomes.", "up": ["D1", "D3", "D4", "E1"], "down": ["D1", "S6", "C5", "E1"], "decision": ["Choose intervention", "Personalise"], "money": ["Content and clinical review"], "failure": ["Unsupported intervention weakens outcomes"]}, {"id": "E1", "label": "Research & evidence", "group": "Evidence", "ring": 3, "angle": 200, "summary": "Studies, pilots and outcome evidence.", "up": ["P3", "P4", "D3", "D5", "S6"], "down": ["E2", "D5", "O3", "C1"], "decision": ["Accept evidence", "Design study"], "money": ["Study cost"], "failure": ["Evidence reused across incompatible versions"]}, {"id": "E2", "label": "Regulatory & claims", "group": "Evidence", "ring": 3, "angle": 240, "summary": "What we are allowed to say.", "up": ["E1", "P4", "D1", "D4", "D5", "P2"], "down": ["C1", "P2", "O3", "D1"], "decision": ["Approve claim scope"], "money": ["Consultants, testing, legal"], "failure": ["Unsupported claim creates regulatory risk"]}, {"id": "E3", "label": "Safety & clinical review", "group": "Evidence", "ring": 3, "angle": 280, "summary": "Safety rules and clinical sign-off.", "up": ["D4", "D5", "E1"], "down": ["D4", "D5", "E2"], "decision": ["Approve safety rules"], "money": ["Clinical review time"], "failure": ["Unsafe guidance reaches users"]}, {"id": "E4", "label": "Privacy & consent", "group": "Evidence", "ring": 3, "angle": 320, "summary": "Consent, retention and data use.", "up": ["D2", "D4"], "down": ["D1", "D4", "C5", "O5"], "decision": ["Approve data use"], "money": ["Legal and security"], "failure": ["New data use exceeds consent"]}, {"id": "C1", "label": "Marketing & positioning", "group": "Commercial & Service", "ring": 4, "angle": 270, "summary": "What we promise publicly.", "up": ["E2", "O3", "D1"], "down": ["C2", "C3"], "decision": ["Launch campaign", "Approve message"], "money": ["Media and content"], "failure": ["Marketing runs ahead of claims"]}, {"id": "C2", "label": "Leads & waitlist", "group": "Commercial & Service", "ring": 4, "angle": 342, "summary": "Demand, leads and CRM.", "up": ["C1", "O3"], "down": ["C3", "S6"], "decision": ["Open waitlist", "Route leads"], "money": ["Acquisition cost"], "failure": ["Demand exceeds supply and service capacity"]}, {"id": "C3", "label": "Orders & delivery promise", "group": "Commercial & Service", "ring": 4, "angle": 54, "summary": "What the customer is promised and when.", "up": ["C2", "S3", "S4", "S5", "O1"], "down": ["S3", "S5", "S6"], "decision": ["Promise delivery date"], "money": ["Margin and fulfilment"], "failure": ["Sales promises a date operations cannot meet"]}, {"id": "C4", "label": "Support & success", "group": "Commercial & Service", "ring": 4, "angle": 126, "summary": "Customer issues, triage and help.", "up": ["S5", "S6", "D1", "D4"], "down": ["C5", "E1", "P3", "P4"], "decision": ["Triage severity", "Replace unit"], "money": ["Support and replacements"], "failure": ["Support cannot trace issue to source"]}, {"id": "C5", "label": "Usage & feedback", "group": "Commercial & Service", "ring": 4, "angle": 198, "summary": "What customers do and report.", "up": ["D1", "D2", "S6", "C4"], "down": ["E1", "D3", "D4", "D5", "O3"], "decision": ["Define metrics", "Triage feedback"], "money": ["Analytics and research"], "failure": ["Weak feedback means product decisions are blind"]}], "colors": {"Governance": "#7c5cff", "Build": "#ff7a59", "Supply": "#12a594", "Software & AI": "#2f80ed", "Evidence": "#eab308", "Commercial & Service": "#ec4899"}};
+const DATA={"center": {"x": 1020, "y": 480}, "rings": {"1": 170, "2": 330, "3": 470, "4": 600}, "nodes": [{"id": "O1", "label": "Finance & runway", "group": "Governance", "ring": 1, "angle": 270, "summary": "Cash, spend approvals and runway.", "up": ["S2", "S1", "O2"], "down": ["O3"], "decision": ["Approve at-risk spend"], "money": ["Rush fees, reprints, inventory cash"], "failure": ["Costs appear after commitments are made"]}, {"id": "O2", "label": "People & capability", "group": "Governance", "ring": 1, "angle": 342, "summary": "Hiring, contractors and capacity.", "up": ["O3"], "down": ["P3", "D1", "D4", "S6"], "decision": ["Hire vs contract"], "money": ["Salaries and contractor spend"], "failure": ["One person becomes the bottleneck"]}, {"id": "O3", "label": "Roadmap & launch date", "group": "Governance", "ring": 1, "angle": 54, "summary": "What ships, when, and in what order.", "up": ["E1", "E2", "C1", "S1"], "down": ["P1", "P3", "P4", "D1", "D4", "D5", "C1", "C2", "C3"], "decision": ["Move launch date", "Cut scope"], "money": ["Delay cost and rush premiums"], "failure": ["A date change invalidates evidence, claims and supply plans"]}, {"id": "O4", "label": "Decision log", "group": "Governance", "ring": 1, "angle": 126, "summary": "Why a decision was made and what it touched.", "up": [], "down": ["O1", "O2", "O3", "E1", "E2", "E3", "E4"], "decision": ["Record decision and owner"], "money": ["Low cost, high avoidance value"], "failure": ["Decisions live in people\u2019s heads"]}, {"id": "O5", "label": "Systems & integrations", "group": "Governance", "ring": 1, "angle": 198, "summary": "Tools, data connections and automations.", "up": ["O3", "E4"], "down": ["C5", "S6"], "decision": ["Build vs buy"], "money": ["Tooling and maintenance"], "failure": ["Integrations break and the map becomes stale"]}, {"id": "P1", "label": "Casing & industrial design", "group": "Build", "ring": 2, "angle": 0, "summary": "Form factor, materials and enclosure.", "up": ["O3", "P3"], "down": ["P5", "P2"], "decision": ["Freeze form factor"], "money": ["Tooling and prototypes"], "failure": ["Late casing change forces rework"]}, {"id": "P2", "label": "Packaging & claims copy", "group": "Build", "ring": 2, "angle": 40, "summary": "Box, inserts, instructions and claims.", "up": ["E2", "P1"], "down": ["S4", "C1"], "decision": ["Freeze packaging claims"], "money": ["Print and reprint cost"], "failure": ["Claims change after printing"]}, {"id": "P3", "label": "Electronics & sensors", "group": "Build", "ring": 2, "angle": 80, "summary": "PCB, sensors, battery and power.", "up": ["P1", "O3", "S1"], "down": ["P4", "D3", "E1", "S4"], "decision": ["Choose sensors", "Revise PCB"], "money": ["BOM, respins, test fixtures"], "failure": ["Hardware change invalidates firmware and evidence"]}, {"id": "P4", "label": "Firmware", "group": "Build", "ring": 2, "angle": 120, "summary": "Sampling, power, OTA and device control.", "up": ["P3", "D3"], "down": ["D3", "D4", "E1", "E2", "S4"], "decision": ["Change sampling rate", "Release OTA"], "money": ["Validation and certification"], "failure": ["One setting changes features, models, claims and studies"]}, {"id": "P5", "label": "Manufacturing & QC", "group": "Supply", "ring": 2, "angle": 160, "summary": "Build, test, yield and release.", "up": ["P1", "P3", "P4", "S4"], "down": ["S3", "C3"], "decision": ["Batch size", "QC plan"], "money": ["Unit cost, yield loss, rework"], "failure": ["Defects create returns and support load"]}, {"id": "S1", "label": "Vendors & lead times", "group": "Supply", "ring": 2, "angle": 200, "summary": "Components, suppliers and supply risk.", "up": ["P3", "O3"], "down": ["S2", "S4"], "decision": ["Choose vendor", "Commit lead time"], "money": ["Component and expedite cost"], "failure": ["Long-lead part becomes critical path"]}, {"id": "S2", "label": "Procurement & BOM", "group": "Supply", "ring": 2, "angle": 240, "summary": "What to buy, when, and at what risk.", "up": ["P3", "S1", "O1"], "down": ["S3", "S4", "O1"], "decision": ["Buy at risk", "Approve PO"], "money": ["Cash committed, write-off risk"], "failure": ["Buying before design freeze creates obsolete stock"]}, {"id": "S3", "label": "Inventory & allocation", "group": "Supply", "ring": 2, "angle": 280, "summary": "Finished units, reservations and allocation.", "up": ["S4", "C3"], "down": ["S5", "C3"], "decision": ["Set safety stock", "Allocate units"], "money": ["Working capital and storage"], "failure": ["Stock reserved for wrong configuration"]}, {"id": "S4", "label": "Production & fulfilment", "group": "Supply", "ring": 2, "angle": 320, "summary": "Build, pack and prepare delivery.", "up": ["P5", "S2", "S3"], "down": ["S3", "S5", "C3"], "decision": ["Production slot", "QC release"], "money": ["Labour, freight, rework"], "failure": ["Production slip moves delivery promise"]}, {"id": "D1", "label": "App & web", "group": "Software & AI", "ring": 3, "angle": 0, "summary": "What the customer sees and does.", "up": ["D2", "D3", "D4", "D5", "O3"], "down": ["D5", "S6", "C1", "C5"], "decision": ["Release scope", "Feature flags"], "money": ["Engineering and design"], "failure": ["App copy makes unsupported claims"]}, {"id": "D2", "label": "Backend & data pipeline", "group": "Software & AI", "ring": 3, "angle": 40, "summary": "Data ingestion, storage and APIs.", "up": ["E4", "P4", "D3"], "down": ["D1", "D3", "D4", "D5", "C5"], "decision": ["Schema", "Retention", "Pipeline release"], "money": ["Hosting and compute"], "failure": ["Pipeline change alters model inputs and studies"]}, {"id": "D3", "label": "Signal processing", "group": "Software & AI", "ring": 3, "angle": 80, "summary": "Raw signal to usable health features.", "up": ["P3", "P4", "D2"], "down": ["D4", "D5", "E1", "E2"], "decision": ["Define features", "Set thresholds"], "money": ["Compute and validation"], "failure": ["Changed features invalidate models and evidence"]}, {"id": "D4", "label": "LLM & intelligence", "group": "Software & AI", "ring": 3, "angle": 120, "summary": "Prompts, guardrails, evaluations and routing.", "up": ["D2", "D3", "E3", "E4"], "down": ["D1", "D5", "E2", "E3"], "decision": ["Prompt version", "Guardrails", "Model version"], "money": ["Inference, evaluation, safety"], "failure": ["LLM change alters advice and claims invisibly"]}, {"id": "D5", "label": "Behaviour-change engine", "group": "Software & AI", "ring": 3, "angle": 160, "summary": "Interventions, personalisation and outcomes.", "up": ["D1", "D3", "D4", "E1"], "down": ["D1", "S6", "C5", "E1"], "decision": ["Choose intervention", "Personalise"], "money": ["Content and clinical review"], "failure": ["Unsupported intervention weakens outcomes"]}, {"id": "E1", "label": "Research & evidence", "group": "Evidence", "ring": 3, "angle": 200, "summary": "Studies, pilots and outcome evidence.", "up": ["P3", "P4", "D3", "D5", "S6"], "down": ["E2", "D5", "O3", "C1"], "decision": ["Accept evidence", "Design study"], "money": ["Study cost"], "failure": ["Evidence reused across incompatible versions"]}, {"id": "E2", "label": "Regulatory & claims", "group": "Evidence", "ring": 3, "angle": 240, "summary": "What we are allowed to say.", "up": ["E1", "P4", "D1", "D4", "D5", "P2"], "down": ["C1", "P2", "O3", "D1"], "decision": ["Approve claim scope"], "money": ["Consultants, testing, legal"], "failure": ["Unsupported claim creates regulatory risk"]}, {"id": "E3", "label": "Safety & clinical review", "group": "Evidence", "ring": 3, "angle": 280, "summary": "Safety rules and clinical sign-off.", "up": ["D4", "D5", "E1"], "down": ["D4", "D5", "E2"], "decision": ["Approve safety rules"], "money": ["Clinical review time"], "failure": ["Unsafe guidance reaches users"]}, {"id": "E4", "label": "Privacy & consent", "group": "Evidence", "ring": 3, "angle": 320, "summary": "Consent, retention and data use.", "up": ["D2", "D4"], "down": ["D1", "D4", "C5", "O5"], "decision": ["Approve data use"], "money": ["Legal and security"], "failure": ["New data use exceeds consent"]}, {"id": "C1", "label": "Marketing & positioning", "group": "Commercial & Service", "ring": 4, "angle": 270, "summary": "What we promise publicly.", "up": ["E2", "O3", "D1"], "down": ["C2", "C3"], "decision": ["Launch campaign", "Approve message"], "money": ["Media and content"], "failure": ["Marketing runs ahead of claims"]}, {"id": "C2", "label": "Leads & waitlist", "group": "Commercial & Service", "ring": 4, "angle": 342, "summary": "Demand, leads and CRM.", "up": ["C1", "O3"], "down": ["C3", "S6"], "decision": ["Open waitlist", "Route leads"], "money": ["Acquisition cost"], "failure": ["Demand exceeds supply and service capacity"]}, {"id": "C3", "label": "Orders & delivery promise", "group": "Commercial & Service", "ring": 4, "angle": 54, "summary": "What the customer is promised and when.", "up": ["C2", "S3", "S4", "S5", "O1"], "down": ["S3", "S5", "S6"], "decision": ["Promise delivery date"], "money": ["Margin and fulfilment"], "failure": ["Sales promises a date operations cannot meet"]}, {"id": "C4", "label": "Support & success", "group": "Commercial & Service", "ring": 4, "angle": 126, "summary": "Customer issues, triage and help.", "up": ["S5", "S6", "D1", "D4"], "down": ["C5", "E1", "P3", "P4"], "decision": ["Triage severity", "Replace unit"], "money": ["Support and replacements"], "failure": ["Support cannot trace issue to source"]}, {"id": "C5", "label": "Usage & feedback", "group": "Commercial & Service", "ring": 4, "angle": 198, "summary": "What customers do and report.", "up": ["D1", "D2", "S6", "C4"], "down": ["E1", "D3", "D4", "D5", "O3"], "decision": ["Define metrics", "Triage feedback"], "money": ["Analytics and research"], "failure": ["Weak feedback means product decisions are blind"]}], "colors": {"Governance": "#5b3a4a", "Build": "#d95f4f", "Supply": "#c98f3d", "Software & AI": "#3a63c9", "Evidence": "#8a4a63", "Commercial & Service": "#b04a3a"}};
 const tabs=document.querySelectorAll('.tab');
 function go(id){tabs.forEach(t=>t.classList.toggle('active',t.dataset.page===id));document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));closePanel();window.scrollTo(0,0)}
-tabs.forEach(t=>t.addEventListener('click',()=>go(t.dataset.page)));window.go=go;
+tabs.forEach(t=>t.addEventListener('click',()=>{if(t.dataset.page)go(t.dataset.page)}));window.go=go;
 
 const svg=document.getElementById('svg');
 const panel=document.getElementById('panel');
@@ -253,17 +282,15 @@ function pos(n){const r=DATA.rings[n.ring];const a=n.angle*Math.PI/180;return{x:
 function box(n){return{w:190,h:64,x:pos(n).x-95,y:pos(n).y-32}}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 
-// Everything drawable lives inside a viewport group so zoom/pan transforms one thing.
 svg.innerHTML='<g id="viewport"></g>';
 const viewport=document.getElementById('viewport');
 
-// Ring bands + labels
 [1,2,3,4].forEach(ri=>{
   const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
   c.setAttribute('cx',CX);c.setAttribute('cy',CY);c.setAttribute('r',DATA.rings[ri]);
   c.setAttribute('class','ring');
-  const col=DATA.colors[Object.keys(DATA.colors)[ri-1]]||'#33405a';
-  c.setAttribute('stroke',col);c.setAttribute('stroke-opacity','0.22');
+  const col=DATA.colors[Object.keys(DATA.colors)[ri-1]]||'#8a7a6f';
+  c.setAttribute('stroke',col);c.setAttribute('stroke-opacity','0.3');
   viewport.appendChild(c);
   const t=document.createElementNS('http://www.w3.org/2000/svg','text');
   t.setAttribute('x',CX);t.setAttribute('y',CY-DATA.rings[ri]-10);
@@ -272,7 +299,6 @@ const viewport=document.getElementById('viewport');
   viewport.appendChild(t);
 });
 
-// Centre
 const cg=document.createElementNS('http://www.w3.org/2000/svg','g');
 cg.setAttribute('class','center');
 const cc=document.createElementNS('http://www.w3.org/2000/svg','circle');
@@ -283,7 +309,6 @@ const ct2=document.createElementNS('http://www.w3.org/2000/svg','text');
 ct2.setAttribute('x',CX);ct2.setAttribute('y',CY+14);ct2.setAttribute('text-anchor','middle');ct2.setAttribute('class','sub');ct2.textContent='shared ground truth';
 cg.appendChild(cc);cg.appendChild(ct);cg.appendChild(ct2);viewport.appendChild(cg);
 
-// Edges
 const edgeEls=links.map(l=>{
   const a=byId[l.from],b=byId[l.to];
   const p1=pos(a),p2=pos(b);
@@ -294,14 +319,13 @@ const edgeEls=links.map(l=>{
   p.setAttribute('class','edge');viewport.appendChild(p);return p;
 });
 
-// Nodes
 const nodeEls=DATA.nodes.map(n=>{
   const p=pos(n),b=box(n);
   const g=document.createElementNS('http://www.w3.org/2000/svg','g');
   g.setAttribute('class','node');g.dataset.id=n.id;
   const card=document.createElementNS('http://www.w3.org/2000/svg','rect');
   card.setAttribute('class','card');card.setAttribute('x',b.x);card.setAttribute('y',b.y);
-  card.setAttribute('width',b.w);card.setAttribute('height',b.h);card.setAttribute('rx','10');
+  card.setAttribute('width',b.w);card.setAttribute('height',b.h);card.setAttribute('rx','12');
   const accent=document.createElementNS('http://www.w3.org/2000/svg','rect');
   accent.setAttribute('x',b.x);accent.setAttribute('y',b.y);accent.setAttribute('width','4');
   accent.setAttribute('height',b.h);accent.setAttribute('fill',DATA.colors[n.group]);
@@ -322,7 +346,6 @@ const nodeEls=DATA.nodes.map(n=>{
   viewport.appendChild(g);return g;
 });
 
-// Zoom & pan
 let scale=1,tx=0,ty=0,panning=false,px=0,py=0,moved=false;
 function apply(){viewport.setAttribute('transform','translate('+tx+','+ty+') scale('+scale+')')}
 function zoomAt(factor,cx,cy){
@@ -362,7 +385,6 @@ function render(){
 function link(id){const n=byId[id];return '<span class="link" data-id="'+id+'">'+esc(n.id)+' · '+esc(n.label)+'</span>'}
 panel.addEventListener('click',e=>{const t=e.target.closest('.link');if(t)select(t.dataset.id)});
 
-// Selecting a node zooms slightly and centres it in the visible area left of the panel.
 function focusNode(n){
   const target=1.15;
   const r=svg.getBoundingClientRect();
